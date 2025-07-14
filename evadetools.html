@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evade Tools - Ultimate Gaming Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: #0a0a0a;
+            overflow-x: hidden;																																	
+        }
+
+        /* Enhanced animated background with multiple layers */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(circle at 20% 80%, #1a1a2e 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, #16213e 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, #0f3460 0%, transparent 50%),
+                        linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            background-size: 100% 100%;
+            animation: bgPulse 20s ease infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Glassmorphism grid overlay */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                linear-gradient(rgba(78, 205, 196, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(78, 205, 196, 0.03) 1px, transparent 1px);
+            background-size: 100px 100px;
+            animation: gridMove 30s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100px, 100px); }
+        }
+
+        /* Enhanced floating particles with 3D effect */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(0.5px);
+            box-shadow: 0 0 20px currentColor;
+        }
+
+        .particle:nth-child(odd) {
+            width: 4px;
+            height: 4px;
+            background: #4ecdc4;
+            animation: float1 20s infinite linear;
+        }
+
+        .particle:nth-child(even) {
+            width: 6px;
+            height: 6px;
+            background: #ff6b6b;
+            animation: float2 25s infinite linear;
+        }
+
+        @keyframes float1 {
+            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) translateX(100px) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes float2 {
+            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+            15% { opacity: 1; }
+            85% { opacity: 1; }
+            100% { transform: translateY(-10vh) translateX(-100px) rotate(-360deg); opacity: 0; }
+        }
+
+        /* Modern navigation with glassmorphism */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(10, 10, 10, 0.1);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 1rem 5%;
+            backdrop-filter: blur(30px) saturate(200%);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 50%, #45b7d1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(78, 205, 196, 0.5);
+            letter-spacing: -0.02em;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
+        /* Status indicator */
+        .status-indicator {
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #4ecdc4;
+            background: rgba(78, 205, 196, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            border: 1px solid rgba(78, 205, 196, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #4ecdc4;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Enhanced hero section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+        }
+
+        .hero-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.1) 0%, transparent 70%);
+            animation: heroGlow 8s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes heroGlow {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            100% { opacity: 0.7; transform: scale(1.2); }
+        }
+
+        .hero-content h1 {
+            font-size: 5.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 50%, #45b7d1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 50px rgba(255, 107, 107, 0.3);
+            letter-spacing: -0.03em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.7s forwards;
+            background: linear-gradient(135deg, #ccc 0%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Enhanced button container with better spacing */
+        .button-container {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Modern button with micro-interactions */
+        .main-button {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.8rem 3.5rem;
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(255, 107, 107, 0.3);
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transform: translateY(0);
+        }
+
+        .main-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .main-button::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 2px;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            border-radius: 20px;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: xor;
+            -webkit-mask-composite: xor;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .main-button:hover::before {
+            left: 100%;
+        }
+
+        .main-button:hover::after {
+            opacity: 1;
+        }
+
+        .main-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(255, 107, 107, 0.5);
+            filter: brightness(1.1);
+        }
+
+        .main-button:active {
+            transform: translateY(-2px);
+        }
+
+        .button-icon {
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .main-button:hover .button-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Enhanced dropdown with glassmorphism */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            min-width: 320px;
+            z-index: 1000;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+        }
+
+        .dropdown-content.show {
+            display: block;
+            animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1);
+            }
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 1.5rem;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 15px;
+            margin: 0.8rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1rem;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dropdown-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(78, 205, 196, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .dropdown-item:hover::before {
+            left: 100%;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(78, 205, 196, 0.15);
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.3);
+            border-color: rgba(78, 205, 196, 0.3);
+        }
+
+        .dropdown-item-icon {
+            font-size: 1.4rem;
+            color: #4ecdc4;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-item:hover .dropdown-item-icon {
+            transform: scale(1.2);
+        }
+
+        /* Enhanced modal with better animations */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            position: relative;
+            background: linear-gradient(145deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 100%);
+            backdrop-filter: blur(30px) saturate(150%);
+            margin: 3% auto;
+            padding: 3rem;
+            border-radius: 30px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+            animation: modalSlideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #999;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .close:hover {
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            transform: scale(1.1);
+        }
+
+        .modal h2 {
+            color: #4ecdc4;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-top: 0;
+            background: linear-gradient(135deg, #4ecdc4 0%, #45b7d1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal h3 {
+            color: #ff6b6b;
+            margin: 2rem 0 1.5rem 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal p, .modal li {
+            color: #ccc;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .modal ul {
+            margin-left: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .modal ul li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        .modal ul li::before {
+            content: '▶';
+            color: #4ecdc4;
+            font-size: 0.8rem;
+            position: absolute;
+            left: -1.5rem;
+        }
+
+        /* Enhanced feature grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(78, 205, 196, 0.2);
+            border-color: rgba(78, 205, 196, 0.3);
+        }
+
+        .feature-card h4 {
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        /* Enhanced download section */
+        .download-container {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .download-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem 3rem;
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .download-button:hover::before {
+            left: 100%;
+        }
+
+        .download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(255, 107, 107, 0.6);
+            filter: brightness(1.1);
+        }
+
+        .download-button:active {
+            transform: translateY(-2px);
+        }
+
+        /* Enhanced info section */
+        .info-section {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .info-section h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(78, 205, 196, 0.3);
+            letter-spacing: -0.02em;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            border-color: rgba(78, 205, 196, 0.3);
+        }
+
+        .info-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #4ecdc4;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .info-card p {
+            color: #ccc;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Enhanced footer */
+        footer {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(26, 26, 46, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-top: 8rem;
+            color: #ccc;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+        }
+
+        /* Enhanced scrollbar */
+        .modal-content::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #ff5252, #26a69a);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+            }
+            
+            .main-button {
+                width: 100%;
+                max-width: 320px;
+                padding: 1.5rem 2.5rem;
+            }
+            
+            .dropdown-content {
+                min-width: 280px;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                padding: 2rem;
+                max-height: 85vh;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .modal h2 {
+                font-size: 2rem;
+            }
+
+            .download-button {
+                padding: 1.2rem 2rem;
+                font-size: 1rem;
+            }
+
+            .status-indicator {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="grid-overlay"></div>
+    <div class="particles"></div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">Evade Tools</div>
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <span>Online</span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Evade Tools</h1>
+            <p class="hero-subtitle">Evade Tools Hub - Download everything you need for enhanced gaming</p>
+            
+            <div class="button-container">
+                <button class="main-button" onclick="openLagSwitchModal()">
+                    <span class="button-icon">🚀</span>
+                    Better Lag Switch
+                </button>
+                
+                <div class="dropdown">
+                    <button class="main-button" onclick="toggleDropdown()">
+                        <span class="button-icon">⚡</span>
+                        AHK Scripts
+                    </button>
+                    <div id="dropdown-menu" class="dropdown-content">
+                        <a href="https://github.com/Evade-Tools/EvadeTools/releases/download/Evade/Roblox.Freeze.ONLY.MOUSE.KEYBIND.ahk" 
+                           class="dropdown-item" target="_blank">
+                            <span class="dropdown-item-icon">🖱️</span>
+                            Mouse Keybinds
+                        </a>
+                        <a href="https://github.com/Evade-Tools/EvadeTools/releases/download/Evade/Roblox.Freeze.ONLY.KEYBOARD.KEYBINDS.ahk" 
+                           class="dropdown-item" target="_blank">
+                            <span class="dropdown-item-icon">⌨️</span>
+                            Keyboard Keybinds
+                        </a>
+                        <a href="https://autohotkey.com/download/ahk-install.exe" 
+                           class="dropdown-item" target="_blank">
+                            <span class="dropdown-item-icon">📥</span>
+                            Download AutoHotkey
+                        </a>
+                    </div>
+                </div>   
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Lag Switch Modal -->
+    <div id="lagSwitchModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLagSwitchModal()">&times;</span>
+            <h2>🚀 Better Lag Switch</h2>
+            <p>Experience the next generation of Roblox performance enhancement with our advanced lag switch tool. Designed with precision controls and customizable settings for the ultimate gaming advantage.</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🎮 Custom Keybinds</h4>
+                    <p>Set personalized mouse and keyboard shortcuts for instant activation during intense gameplay moments</p>
+                </div>
+                <div class="feature-card">
+                    <h4>⚡ Intensity Control</h4>
+                    <p>Fine-tune freeze intensity from 1-5 levels for optimal performance tailored to your specific gaming needs</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔧 Advanced Settings</h4>
+                    <p>Precision control over Roblox process targeting with customizable freeze duration and behavior</p>
+                </div>
+                <div class="feature-card">
+                    <h4>⚙️ Intuitive Interface</h4>
+                    <p>User-friendly design makes configuration simple and accessible for gamers of all skill levels</p>
+                </div>
+            </div>
+
+            <h3>🎯 Features</h3>
+            <ul>
+                <li>Customizable freeze duration and intensity levels (1-5 precision settings)</li>
+                <li>Full mouse and keyboard keybind support for maximum gaming flexibility</li>
+                <li>Real-time Roblox process targeting with intelligent auto-detection</li>
+                <li>Lightweight architecture that won't impact your system performance</li>
+                <li>Intuitive configuration interface with easy-to-use controls</li>
+                <li>Safe and reliable operation with built-in security measures</li>
+                <li>Universal compatibility with all Roblox games and versions</li>
+                <li>Instant activation and deactivation for seamless gameplay</li>
+            </ul>
+
+            <h3>⚙️ Setup Guide</h3>
+            <ul>
+                <li>Download the Better Lag Switch executable using the secure link below</li>
+                <li>Launch the application and configure your preferred keybinds (mouse/keyboard)</li>
+                <li>Adjust intensity level from 1-5 based on your gaming requirements</li>
+                <li>Start Roblox and load your favorite game</li>
+                <li>Use your configured keybinds to activate the lag switch when needed</li>
+                <li>Customize freeze duration and behavior through advanced settings</li>
+                <li>Dominate your games with enhanced performance and timing control</li>
+            </ul>
+
+            <h3>🔥 Why Choose Our Solution?</h3>
+            <p>Our Better Lag Switch stands apart from basic alternatives with its advanced customization options, rock-solid reliability, and user experience. Whether you're a casual player or competitive gamer, this tool delivers the precision control and performance enhancement you need to excel in your Roblox gaming sessions.</p>
+
+            <div class="download-container">
+                <a href="https://github.com/Evade-Tools/EvadeTools/releases/download/Evade/RobloxFreezer.exe" 
+                   class="download-button" target="_blank">
+                    <span>🔥</span>
+                    Download Tool
+                </a>
+                <p style="margin-top: 1.5rem; font-size: 0.95rem; color: #999;">
+                           ✅ Windows 10/11 Compatible • 🔒 Safe & Not Secure 
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <section class="info-section">
+        <h2>Quick Setup Guide</h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>📥 AutoHotkey Foundation</h3>
+                <p>Begin by downloading and installing AutoHotkey - the essential foundation that powers all script automation and gaming enhancement tools. This prerequisite ensures optimal compatibility and performance.</p>
+            </div>
+            <div class="info-card">
+                <h3>🎮 Script Selection</h3>
+                <p>Choose between our optimized mouse keybind or keyboard keybind scripts based on your gaming preferences. Each script is specifically engineered for Roblox gaming excellence.</p>
+            </div>
+            <div class="info-card">
+                <h3>⚡ Enhancement</h3>
+                <p>Unlock the full potential with our Better Lag Switch - featuring advanced customization options, precision intensity controls, and professional-grade gaming performance enhancement.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Evade Tools. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Enhanced particle system
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            for (let i = 0; i < 80; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 30 + 's';
+                particle.style.animationDuration = (Math.random() * 20 + 20) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Enhanced dropdown with better UX
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown-menu');
+            dropdown.classList.toggle('show');
+            
+            // Add ripple effect
+            const button = event.target.closest('.main-button');
+            const ripple = document.createElement('div');
+            ripple.style.position = 'absolute';
+            ripple.style.width = '20px';
+            ripple.style.height = '20px';
+            ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+            ripple.style.borderRadius = '50%';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.animation = 'ripple 0.6s ease-out';
+            ripple.style.left = '50%';
+            ripple.style.top = '50%';
+            ripple.style.marginLeft = '-10px';
+            ripple.style.marginTop = '-10px';
+            
+            button.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        }
+
+        // Enhanced modal with better animations
+        function openLagSwitchModal() {
+            const modal = document.getElementById('lagSwitchModal');
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Smooth scroll to top
+            setTimeout(() => {
+                const modalContent = modal.querySelector('.modal-content');
+                modalContent.scrollTop = 0;
+            }, 100);
+        }
+
+        function closeLagSwitchModal() {
+            const modal = document.getElementById('lagSwitchModal');
+            const modalContent = modal.querySelector('.modal-content');
+            
+            // Add closing animation
+            modalContent.style.animation = 'modalSlideOut 0.3s ease-in forwards';
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                modalContent.style.animation = '';
+            }, 300);
+        }
+
+        // Enhanced click outside functionality
+        window.onclick = function(event) {
+            // Close dropdown
+            if (!event.target.matches('.main-button') && !event.target.closest('.dropdown')) {
+                const dropdowns = document.getElementsByClassName('dropdown-content');
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+            
+            // Close modal
+            if (event.target === document.getElementById('lagSwitchModal')) {
+                closeLagSwitchModal();
+            }
+        }
+
+        // Enhanced navbar with scroll effects
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const scrolled = window.scrollY > 50;
+            
+            if (scrolled) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Enhanced keyboard shortcuts
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeLagSwitchModal();
+                // Also close dropdown
+                const dropdowns = document.getElementsByClassName('dropdown-content');
+                for (let i = 0; i < dropdowns.length; i++) {
+                    dropdowns[i].classList.remove('show');
+                }
+            }
+        });
+
+        // Initialize enhanced features
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            // Add CSS for ripple effect
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple {
+                    to {
+                        transform: scale(4);
+                        opacity: 0;
+                    }
+                }
+                
+                @keyframes modalSlideOut {
+                    from {
+                        opacity: 1;
+                        transform: translateY(0) scale(1);
+                    }
+                    to {
+                        opacity: 0;
+                        transform: translateY(-30px) scale(0.95);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Enhanced modal content click prevention
+            const modalContent = document.querySelector('.modal-content');
+            if (modalContent) {
+                modalContent.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                });
+            }
+            
+            // Add smooth scrolling for better UX
+            document.documentElement.style.scrollBehavior = 'smooth';
+        });
+
+        // Performance optimization
+        let ticking = false;
+        function updateOnScroll() {
+            if (!ticking) {
+                requestAnimationFrame(function() {
+                    // Navbar scroll effect
+                    const navbar = document.getElementById('navbar');
+                    const scrolled = window.scrollY > 50;
+                    navbar.classList.toggle('scrolled', scrolled);
+                    
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', updateOnScroll);
+    </script>
+</body>
+</html>
